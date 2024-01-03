@@ -40,10 +40,13 @@
             "euro" => 1.0
         ];
 
-        $conversionRate = $conversionRates[$to] / $conversionRates[$from];
-        $convertedAmount = $amount * $conversionRate;
-
-        return $convertedAmount;
+        if (array_key_exists($to, $conversionRates) && array_key_exists($from, $conversionRates)) {
+            $conversionRate = $conversionRates[$to] / $conversionRates[$from];
+            $convertedAmount = $amount * $conversionRate;
+    
+            return $convertedAmount;
+        }
+        else return "Error: not a know currency!"
     }
 
     if (isset($_GET["amount"], $_GET["from"], $_GET["to"]))
