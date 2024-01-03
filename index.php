@@ -12,6 +12,10 @@
         <label for="from">Convert from:</label>
         <select name="from" id="from">
             <option value="euro">Euro</option>
+            <option value="dollar">Dollar - USA</option>
+            <option value="aud">Dollar - Australian</option>
+            <option value="krona">Krona - Swedish</option>
+            <option value="lira">Lira - Turkish</option>
         </select>
         <br>
         <label for="to">Convert to:</label>
@@ -36,15 +40,19 @@
             "euro" => 1.0
         ];
 
-        $conversionRate = $conversionRates[$to];
+        $conversionRate = $conversionRates[$to] / $conversionRates[$from];
         $convertedAmount = $amount * $conversionRate;
 
         return $convertedAmount;
     }
 
-    if (isset($_GET["amount"]))
+    if (isset($_GET["amount"], $_GET["from"], $_GET["to"]))
     {
-        echo "Congrats, you now have " . convertCurrency($_GET["amount"], $_GET["from"], $_GET["to"]) . " " . $_GET["to"] . ".";
+        $convertedValue = convertCurrency($_GET["amount"], $_GET["from"], $_GET["to"]);
+
+        if (is_numeric($convertedValue))
+            echo "Congrats, you now have " . $convertedValue . " " . $_GET["to"] . ".";
+        else echo $convertedValue;
     }
     ?>
 </body>
