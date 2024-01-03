@@ -29,5 +29,18 @@
         <br>
         <button type="submit">Convert</button>
     </form>
+    <?php 
+    function convertCurrency(int $amount, string $from, string $to) 
+    {
+        $convertedAmount = $amount;
+
+        return $convertedAmount;
+    }
+
+    if (isset($_GET["amount"]))
+    {
+        echo "Congrats, you now have " . convertCurrency($_GET["amount"], $_GET["from"], $_GET["to"]) . " " . $_GET["to"] . ".";
+    }
+    ?>
 </body>
 </html>
