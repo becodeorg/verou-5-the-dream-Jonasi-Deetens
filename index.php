@@ -46,10 +46,10 @@
     
             return $convertedAmount;
         }
-        else return "Error: not a know currency!"
+        else return "Error: not a know currency!";
     }
 
-    if (isset($_GET["amount"], $_GET["from"], $_GET["to"]))
+    if (isset($_GET["amount"], $_GET["from"], $_GET["to"]) && is_numeric($_GET["amount"]))
     {
         $convertedValue = convertCurrency($_GET["amount"], $_GET["from"], $_GET["to"]);
 
