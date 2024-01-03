@@ -8,14 +8,10 @@
 <body>
     <form action="" method="get">
         <label for="amount">Amount to convert:</label>
-        <input type="text" name="amount" id="amount"><br>
+        <input type="number" name="amount" id="amount"><br>
         <label for="from">Convert from:</label>
         <select name="from" id="from">
             <option value="euro">Euro</option>
-            <option value="dollar">Dollar - USA</option>
-            <option value="aud">Dollar - Australian</option>
-            <option value="krona">Krona - Swedish</option>
-            <option value="lira">Lira - Turkish</option>
         </select>
         <br>
         <label for="to">Convert to:</label>
@@ -32,7 +28,16 @@
     <?php 
     function convertCurrency(int $amount, string $from, string $to) 
     {
-        $convertedAmount = $amount;
+        $conversionRates = [
+            "dollar" => 1.2,
+            "aud" => 2.0,
+            "krona" => 10,
+            "lira" => 0.2,
+            "euro" => 1.0
+        ];
+
+        $conversionRate = $conversionRates[$to];
+        $convertedAmount = $amount * $conversionRate;
 
         return $convertedAmount;
     }
